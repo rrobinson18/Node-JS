@@ -1,16 +1,23 @@
 const path = require('path');
 const fs = require('fs');
-const request = require('request');
+// const request = require('request');
 
 
-let chirpPath = path.join(__dirname, '../chirp.json');
+let chirpPath = path.join(__dirname, '../chirps.json');
 
-request('chirps.json', (err, res, body) => {
 
+fs.readFile(chirpPath, (err, data) => {
     if(err) console.log(err);
 
-    JSON.parse(body).chirps.forEach(item => {
-       fs.appendFileSync(chirpPath,item.chirps + '\n');
-    });
-
+    console.log(data.toString());
 });
+
+// request('chirps.json', (err, res, body) => {
+
+//     if(err) console.log(err);
+
+//     JSON.parse(body).chirps.forEach(item => {
+//        fs.appendFileSync(chirpPath,item.chirps + '\n');
+//     });
+
+// });
